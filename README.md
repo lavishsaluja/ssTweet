@@ -4,7 +4,7 @@
 ssTweet is a twitter bot which would upload the screenshot of every tweet in a thread to Google Photos.
 
 #### Setting Up the project
-After cloning the repo, you should create a new virtual env and install all dependencies from `requirements.txt` then create access_tokens from `twitter_developers` + access_tokens from `google_developers` and add them to two seperate files called `config.py` and `gphotos_keys.json` respectively. This is how both the files should look like:
+After cloning the repo, you should create a new virtual env and install all dependencies from `requirements.txt` then create access_tokens from `twitter_developers` + access_tokens from `google_developers` and add them to two seperate files called `twitter_keys.py` and `gphotos_keys.json` respectively. This is how both the files should look like:
 1. `config.py`
     ```
     CONSUMER_KEY = ""
