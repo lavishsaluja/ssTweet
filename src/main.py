@@ -11,7 +11,7 @@ logging.basicConfig(
 
 
 def main():
-    url = 'https://twitter.com/lavishsaluja/status/1225356209915453440'
+    url = "https://twitter.com/lavishsaluja/status/1225356209915453440"
     photo_list = save_images(url)
     album_title = 'Safemaps'
     auth_file_name = None

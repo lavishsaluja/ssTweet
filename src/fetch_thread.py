@@ -1,5 +1,5 @@
 import tweepy
-from config import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_KEY, ACCESS_SECRET
+from twitter_keys import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_KEY, ACCESS_SECRET
 
 
 def get_api():
@@ -21,6 +21,7 @@ def get_twitter_url(user_name, status_id):
 def update_urls(tweet, api):
     tweet_id = tweet.id
     user_name = tweet.user.screen_name
+    original_author = user_name
     max_id = None
     replies = tweepy.Cursor(
         api.search,
@@ -32,7 +33,7 @@ def update_urls(tweet, api):
 
     urls = []
     for reply in replies:
-        if reply.in_reply_to_status_id == tweet_id:
+        if reply.in_reply_to_status_id == tweet_id and reply.user.screen_name == original_author:
             urls.append(get_twitter_url(user_name, reply.id))
             try:
                 urls.extend(update_urls(reply, api))
