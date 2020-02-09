@@ -10,7 +10,7 @@ logging.basicConfig(
 )
 
 
-def upload_image(photo_list, album_title, auth_file_name):
+def upload_images(photo_list, album_title, auth_file_name):
 	scopes = ['https://www.googleapis.com/auth/photoslibrary', 'https://www.googleapis.com/auth/photoslibrary.sharing']
 	auth_object = Authorization(scopes)
 	cred = auth_object.get_credentials(auth_file_name)

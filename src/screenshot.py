@@ -14,7 +14,7 @@ logging.basicConfig(
 def delete_images(photo_list):
     for photo in photo_list:
         try:
-            os.remove(filename)
+            os.remove(photo)
         except OSError:
             pass
 
@@ -28,8 +28,8 @@ def save_images(url):
         save_image(url, "mobile", tweet.user.screen_name + str(count))
         count += 1
     
-    base_str = os.path.join(os.path.expanduser('~'), 'ssTweet', 'images', tweet.user.screen_name)
-    return [os.path.join(base_str, str(_count) + ".jpg") for _count in range(count)]
+    base_str = os.path.join(os.path.expanduser('~'), 'ssTweet', 'images')
+    return [os.path.join(base_str, tweet.user.screen_name + str(_count) + ".jpg") for _count in range(count)]
 
 
 def save_image(url, mode, name):

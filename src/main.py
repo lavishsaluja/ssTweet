@@ -1,5 +1,5 @@
 from screenshot import save_images, delete_images
-from upload import upload_image
+from upload import upload_images
 import logging
 
 logging.basicConfig(
@@ -15,7 +15,7 @@ def main():
     photo_list = save_images(url)
     album_title = 'Safemaps'
     auth_file_name = None
-    upload_image(photo_list, album_title, auth_file_name)
+    upload_images(photo_list, album_title, auth_file_name)
     delete_images(photo_list)
 
 
