@@ -11,12 +11,14 @@ logging.basicConfig(
     level=logging.INFO
 )
 
+
 def delete_images(photo_list):
     for photo in photo_list:
         try:
             os.remove(photo)
         except OSError:
             pass
+
 
 def save_images(url):
     api = get_api()
@@ -25,7 +27,7 @@ def save_images(url):
     urls.extend(update_urls(tweet, api))
     count = 0
     for url in urls:
-        save_image(url, "mobile", tweet.user.screen_name + str(count))
+        save_image(url, "desktop", tweet.user.screen_name + str(count))
         count += 1
     
     base_str = os.path.join(os.path.expanduser('~'), 'ssTweet', 'images')

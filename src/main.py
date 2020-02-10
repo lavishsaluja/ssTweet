@@ -11,9 +11,9 @@ logging.basicConfig(
 
 
 def main():
-    url = "https://twitter.com/george__mack/status/1163546400547848193"
+    url = "https://twitter.com/lavishsaluja/status/1225356209915453440"
     photo_list = save_images(url)
-    album_title = 'George Mack'
+    album_title = 'Safemaps-desktop'
     auth_file_name = None
     upload_images(photo_list, album_title, auth_file_name)
     delete_images(photo_list)
