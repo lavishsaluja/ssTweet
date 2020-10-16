@@ -9,7 +9,6 @@ logging.basicConfig(
     level=logging.INFO
 )
 
-
 def main():
     url = "https://twitter.com/lavishsaluja/status/1225356209915453440"
     photo_list = save_images(url)
@@ -17,7 +16,6 @@ def main():
     auth_file_name = None
     upload_images(photo_list, album_title, auth_file_name)
     delete_images(photo_list)
-
 
 if __name__ == "__main__":
     main()
