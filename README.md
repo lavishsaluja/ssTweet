@@ -1,14 +1,35 @@
-[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
 
 ### About
-ssTweet is a twitter bot which can upload the screenshot of every tweet in a thread made by the original author to your Google Photos account.
+ssTweet is a command line tool to screenshot all the tweets in a thread and upload them to a seperate album in your google photos account.
 
-I maintain a [To do](./to_do.md) list for all the tasks that I have to complete.
+### To do
+- [x] Write a quick python module to prove the concept if everything works as expected. hard code most of the things.
+- [x] Write a python module to give url and generate screenshot to local machine.
+- [x] Write a python module to upload an image to Google Photos from a locally stored image.
+- [x] Mix up the two modules to generate & upload in one go.
+- [ ] Improve the code quality, darling.
+    - [x] Log every step into a log file as the code runs using the log module.
+    - [x] Classes for Albums, Users, Photos, Tweet Authors.
+    - [ ] Add unit tests.
+- [ ] Solve the issue for authenticating account every time by uploading a photo using `refresh_tokens`
+- [x] Get the `url_list` of every tweet in a thread from the URL of first tweet.
+- [x] Generate screenshot of every tweet in a thread and upload to Photos.
+- [ ] Directly write the image to Google Photos instead of saving & uploading to save up on space.
+- [ ] Verify the ssTweet app with Google Photos to avoid unsafe error.
+- [x] Instead of a tweet, make a `cli` tool first with a local DB.
+- [ ] Work on a simple website where users could connect their twitter and Google Photos account
+- [ ] Design the database needed to store the Photos `authentication_token` in encrypted format from Photos app and map them with Twitter usernames.
+- [ ] Convert the library to a twitter bot
+- [ ] Unroll the contents of the entire thread and upload a single screenshot with text of entire thread.
 
-### Contribute
-Here are the [Set Up](./set_up.md) instructions for anyone who might want to set up the project on their local machine. If you find my code not following the [coding standards](https://www.python.org/dev/peps/pep-0008/) or anything that could have been done in a more pythonic way, I would love to hear from you. Please raise an issue or submit a pull request.
 
-### Caffeine
-<a href="https://www.buymeacoffee.com/lavishsaluja" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
+### Set Up
 
-> If you liked the project, next I'm working on building the tool to archieve an entire twitter profile. Caffeine really helps me work faster & better, you can [buy_me_a_coffee](https://www.buymeacoffee.com/lavishsaluja) if you would like.
+Install all dependencies from `requirements.txt` (preferably in a virtualenv)
+
+head over to [developer.twitter](https://developer.twitter.com/en), create a sample app and get tokens for it and populate the same in `src/twitter.keys.py`
+
+do the same by [google.photos.developers](https://developers.google.com/photos), create an app and get tokens for it and populate the same in `src/gphotos_keys.json`
+
+edit the url, album_title in `src/main.py` & run it.
