@@ -30,9 +30,10 @@ def update_urls(tweet, api):
         max_id=max_id,
         tweet_mode='extended'
     ).items()
-
+    
     urls = []
     for reply in replies:
+        
         if reply.in_reply_to_status_id == tweet_id and reply.user.screen_name == original_author:
             urls.append(get_twitter_url(user_name, reply.id))
             try:
