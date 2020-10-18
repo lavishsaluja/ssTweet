@@ -8,7 +8,7 @@ from fetch_thread import get_api, get_tweet, update_urls
 logging.basicConfig(
     format='%(asctime)s %(module)s.%(funcName)s:%(levelname)s:%(message)s',
     datefmt='%m/%d/%Y %I_%M_%S %p',
-    filename='log_file.log',
+    filename='log_file',
     level=logging.INFO
 )
 
