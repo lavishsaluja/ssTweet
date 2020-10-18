@@ -30,7 +30,7 @@ def save_images(url):
     for url in urls:
         save_image(url, "desktop", tweet.user.screen_name + str(count))
         count += 1
-    base_str = os.path.join(os.path.expanduser('~'), 'ssTweet', 'images')
+    base_str = os.path.join(os.getcwd(), 'images')
     return [os.path.join(base_str, tweet.user.screen_name + str(_count) + ".jpg") for _count in range(count)]
 
 def save_image(url, mode, name):
@@ -39,10 +39,10 @@ def save_image(url, mode, name):
 
     if(data.status_code == 200):
         data = data.json()
-        screenshot_data = data['screenshot']['data']
+        screenshot_data = data['lighthouseResult']['audits']['final-screenshot']['details']['data']
+
         decoded_screenshot_data = base64.b64decode(screenshot_data, altchars='-_', validate=False)
         with open(os.path.join(os.path.expanduser('~'), 'ssTweet', 'images', name + '.jpg'), "wb") as file:
             file.write(decoded_screenshot_data)
     else:
-        print('404')
-        logging.info('Page Speed API by google is returning 404 error code')
+        logging.warning('Page Speed API by google is returning 404 error code')
