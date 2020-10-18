@@ -3,7 +3,10 @@ import base64
 import os
 import json
 import logging
+
+import selenium
 from fetch_thread import get_api, get_tweet, update_urls
+from screenshot_selenium import save_screenshot
 
 logging.basicConfig(
     format='%(asctime)s %(module)s.%(funcName)s:%(levelname)s:%(message)s',
@@ -11,7 +14,6 @@ logging.basicConfig(
     filename='log_file',
     level=logging.INFO
 )
-
 
 def delete_images(photo_list):
     for photo in photo_list:
@@ -25,24 +27,16 @@ def save_images(url):
     tweet = get_tweet(url)
     urls = [url]
     urls.extend(update_urls(tweet, api))
+    logging.info('screenshot/save_images: URLs fetched')
+    for url in urls:
+        logging.info('screenshot/save_images: ' + url)
     
     count = 0
     for url in urls:
-        save_image(url, "desktop", tweet.user.screen_name + str(count))
+        save_image(url, "desktop", tweet.user.screen_name + "_" + str(count))
         count += 1
     base_str = os.path.join(os.getcwd(), 'images')
-    return [os.path.join(base_str, tweet.user.screen_name + str(_count) + ".jpg") for _count in range(count)]
+    return [os.path.join(base_str, tweet.user.screen_name + "_" + str(_count) + ".png") for _count in range(count)]
 
 def save_image(url, mode, name):
-    api_url = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?screenshot=true&strategy=' + mode + '&url=' + url
-    data = requests.request(method='get', url=api_url)
-
-    if(data.status_code == 200):
-        data = data.json()
-        screenshot_data = data['lighthouseResult']['audits']['final-screenshot']['details']['data']
-
-        decoded_screenshot_data = base64.b64decode(screenshot_data, altchars='-_', validate=False)
-        with open(os.path.join(os.path.expanduser('~'), 'ssTweet', 'images', name + '.jpg'), "wb") as file:
-            file.write(decoded_screenshot_data)
-    else:
-        logging.warning('Page Speed API by google is returning 404 error code')
+    save_screenshot(url, name)

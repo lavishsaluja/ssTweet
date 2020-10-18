@@ -1,3 +1,4 @@
+import logging
 import tweepy
 from twitter_keys import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_KEY, ACCESS_SECRET
 
@@ -23,6 +24,9 @@ def update_urls(tweet, api):
     user_name = tweet.user.screen_name
     original_author = user_name
     max_id = None
+
+    logging.info('fetch_thread/update_urls: starting the query on tweepy for all tweets replied to the author')
+    
     replies = tweepy.Cursor(
         api.search,
         q='to:{}'.format(user_name),
@@ -30,14 +34,14 @@ def update_urls(tweet, api):
         max_id=max_id,
         tweet_mode='extended'
     ).items()
-    
+    logging.info('fetch_thread/update_urls: fetched all the replies from query with twepy')
     urls = []
     for reply in replies:
-        
         if reply.in_reply_to_status_id == tweet_id and reply.user.screen_name == original_author:
             urls.append(get_twitter_url(user_name, reply.id))
             try:
                 urls.extend(update_urls(reply, api))
             except tweepy.TweepError:
                 pass
+    logging.info('fetch_thread/update_urls: filtered out non-author tweets')
     return urls
