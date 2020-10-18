@@ -139,8 +139,8 @@ dmypy.json
 .DS_Store
 
 # secure tokens
-twitter_keys.py
-gphotos_keys.json
+src/twitter_keys.py
+src/gphotos_keys.json
 
 # Logs
 log_file
