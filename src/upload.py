@@ -11,6 +11,7 @@ logging.basicConfig(
 
 
 def upload_images(photo_list, album_title, auth_file_name):
+	logging.info('upload_images/ starting the upload on all captured photos')
 	scopes = ['https://www.googleapis.com/auth/photoslibrary', 'https://www.googleapis.com/auth/photoslibrary.sharing']
 	auth_object = Authorization(scopes)
 	cred = auth_object.get_credentials(auth_file_name)
@@ -18,3 +19,4 @@ def upload_images(photo_list, album_title, auth_file_name):
 	session = auth_object.get_auth_session(cred)
 	media_object = Media(session)
 	media_object.upload_photos(photo_list, album_title)
+	logging.info('upload_images/ upload of all photos completed')

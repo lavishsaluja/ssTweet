@@ -1,3 +1,4 @@
+import time
 from selenium import webdriver
 import os
 
@@ -13,7 +14,7 @@ def save_screenshot(url, name):
 
     driver = webdriver.Chrome(PATH_TO_CHROME_DRIVER)
     driver.get(url)
-    driver.implicitly_wait(10)
+    time.sleep(2) # waiting for the window to load completely before picking the element
     tweet = driver.find_element_by_xpath(full)
     folder_name = 'images'
     os.makedirs(folder_name, exist_ok=True)

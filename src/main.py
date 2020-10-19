@@ -15,8 +15,8 @@ def main():
     auth_file_name = None
 
     photo_list = save_images(url)
-    # upload_images(photo_list, album_title)
-    # delete_images(photo_list)
+    upload_images(photo_list, album_title, auth_file_name)
+    delete_images(photo_list)
     
 
 if __name__ == "__main__":
