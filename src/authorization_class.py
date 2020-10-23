@@ -29,11 +29,7 @@ class Authorization:
             host='localhost',
             port=8080,
             authorization_prompt_message='',
-            success_message="Thank you for verification. You may close this window now.\n\n\n\n\n"
-                            "If you're curious to know what happened: The authentication has been completed"
-                            " and we have got your credentials, if we get them right, we'll be uploading"
-                            " the screenshots of your tweets to your Photos account as a next step. Try"
-                            " refreshing your Photos app.",
+            success_message="google authorization has been completed & tweets' screenshots have been uploaded. open your google photos app when you'd like to see the tweets.",
             open_browser=True
         )
 
