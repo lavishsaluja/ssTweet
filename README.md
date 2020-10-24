@@ -22,6 +22,7 @@ in priority:
 
 ### Set Up
 - [x] activate a virtualenv named env & install all dependencies from `requirements.txt`
+- [x] remove `sample_` from the filnames of `sample_twitter_keys.py` and `sample_gphotos_keys.json`
 - [x] head over to [developer.twitter](https://developer.twitter.com/en), create a sample app and get tokens for it and populate the same in `src/twitter.keys.py`
 - [x] do the same on [google.photos.developers](https://developers.google.com/photos), create an app and get tokens for it and populate the same in `src/gphotos_keys.json`
 - [x] edit the url, album_title in `src/main.py` & run it.
